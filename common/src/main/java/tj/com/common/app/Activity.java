@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by Jun on 17/9/16.
  */
@@ -20,7 +22,8 @@ public abstract class Activity extends AppCompatActivity {
         initWindows();
 
         if (initArgs(getIntent().getExtras())) {
-            getContentLayoutId();
+            int layoutId = getContentLayoutId();
+            setContentView(layoutId);
             initWidget();
             initData();
         } else {
@@ -49,7 +52,7 @@ public abstract class Activity extends AppCompatActivity {
      * intit widget
      */
     protected void initWidget() {
-
+        ButterKnife.bind(this);
     }
 
     /**
@@ -75,12 +78,16 @@ public abstract class Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+        // get all the fragment in the activity
         @SuppressLint("RestrictedApi")
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
 
         if (fragments != null && fragments.size() > 0) {
             for (Fragment fragment : fragments) {
+                //判定是否为我们自己需要处理的fragment
                 if (fragment instanceof tj.com.common.app.Fragment) {
+                    //判断是否拦截了返回按钮
                     if (((tj.com.common.app.Fragment) fragment).onBackPressed()) {
                         return;
                     }

@@ -7,9 +7,11 @@
     tools:context="tj.com.friendly.MainActivity">
 
     <TextView
+        android:textColor="#000000"
+        android:id="@+id/txt_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="jello"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

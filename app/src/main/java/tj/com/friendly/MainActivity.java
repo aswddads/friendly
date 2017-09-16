@@ -1,17 +1,23 @@
 package tj.com.friendly;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
-import tj.com.common.Common;
+import butterknife.BindView;
+import tj.com.common.app.Activity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
+    @BindView(R.id.txt_test)
+    TextView textView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getContentLayoutId() {
+        return R.layout.activity_main;
+    }
 
-        new Common();
+    @Override
+    protected void initWidget() {
+        super.initWidget();
+        textView.setText("hello.");
+
     }
 }
